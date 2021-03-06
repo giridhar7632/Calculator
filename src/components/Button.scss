@@ -1,0 +1,49 @@
+$primary-color: #46d8c2;
+$font-color: #ffffff;
+$outline: #28B1B0;
+
+$colors:
+  "add" #FFC067 #FF9A38,
+  "subtract" #FFA6D8 #FF8EBA,
+  "multiply" #596FDC #4B53DC,
+  "divide" #44CEB9 #28B1B0,
+  "clear" #F2DA66 #e9c825,
+  "all-clear" #E87B69 #dd543b,
+  "equals" #28B1B0 #269c9c;
+
+@mixin outline($val){
+  outline: 1px solid $val;
+  &:active{
+    background-color: $val;
+  } 
+}
+
+.button{
+  user-select: none;
+  cursor: pointer;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1.4em;
+  background-color: $primary-color;
+  color: $font-color;
+  flex: 1;
+  outline: 1px solid $outline;
+  z-index: 10;
+  &:active{
+    background-color: #44CEB9;
+  }  
+}
+
+.all-clear{
+  flex: 2;
+}
+
+@each $class, $bg, $active in $colors{
+  .#{$class} {
+    background-color: $bg;
+    @include outline($active);
+  }
+}
