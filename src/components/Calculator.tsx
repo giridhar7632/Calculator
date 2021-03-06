@@ -103,11 +103,7 @@ const Calculator: React.FC = () => {
         setFormula(formula + '0.')
       } else {
         const matched = formula.match(/(-?\d+\.?\d*)$/)
-        setInput(
-          matched && matched[0]
-            ? `${matched[0]}.`
-            : '0.'
-        )
+        setInput(matched && matched[0] ? `${matched[0]}.` : '0.')
         setFormula(
           endsWithOperator.test(input) ? `${formula}0.` : `${formula}.`
         )
