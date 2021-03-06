@@ -102,13 +102,14 @@ const Calculator: React.FC = () => {
         setInput('0.')
         setFormula(formula + '0.')
       } else {
+        const matched = formula.match(/(-?\d+\.?\d*)$/)
         setInput(
-          formula.match(/(-?\d+\.?\d*)$/)
-            ? `${formula.match(/(-?\d+\.?\d*)$/)[0]}.`
+          matched && matched[0]
+            ? `${matched[0]}.`
             : '0.'
         )
         setFormula(
-          endsWithOperator.test(input) ? `${formula}.` : `${formula}0.`
+          endsWithOperator.test(input) ? `${formula}0.` : `${formula}.`
         )
       }
     }
@@ -127,6 +128,7 @@ const Calculator: React.FC = () => {
     } else {
       setInput(input.slice(0, -1))
     }
+    setFormula(formula.slice(0, -1))
   }
 
   return (
